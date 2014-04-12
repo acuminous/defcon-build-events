@@ -16,7 +16,6 @@ function create(context, next) {
     var events = {};
 
     context.defcon.on('event', function(event) {
-
         var key = event.system + ':' + event.group;  
         if (events[key] == 'build_failure' && event.type == 'build_success') {
             raise(_.chain(event).clone().extend({ id: uuid.v1(), type: 'build_fixed' }).value());
